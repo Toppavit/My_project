@@ -15,6 +15,17 @@ public:
     Myclass(std::string initial_value);
     Myclass(const Myclass& src);
     Myclass(double initial_value, std::string in_string);
+    Myclass& operator=(const Myclass& rhs){
+        std::print("Assignment operator called\n");
+        if (this != &rhs) { // Self-assignment check
+            m_initial_value = rhs.m_initial_value;
+            m_string = rhs.m_string;
+            m_value_list = rhs.m_value_list;
+        }
+        return *this; // FIX: Enables assignment chaining (a = b = c)
+    }  
+
+
 
     void set_value(double in_value) { m_initial_value = in_value; }
     double get_value() const { return m_initial_value; }
@@ -80,7 +91,8 @@ int main() {
     Myclass dest = src;
     Myclass obj_3{3.42, 3.53, 3.70};
     Myclass obj_4 = obj_3;
-
+    Myclass obj_5; 
+   obj_5 = obj_4 = obj_3;
     print("{}\n", obj_1.get_value());
     print("{}\n", obj_2.get_String());
     print("{} , {}\n", src.get_value(), src.get_String());
@@ -88,6 +100,6 @@ int main() {
 
     obj_3.get_value_list();
     obj_4.get_value_list();
-
+    obj_5.get_value_list();
     return 0;
 } 
