@@ -1,0 +1,9 @@
+# Ignore compiled binaries (no extension): ignore everything, then allow sources
+*
+!*/
+!*.cpp
+!*.h
+!*.hpp
+!*.md
+!.gitignore
+!.gitkeep
